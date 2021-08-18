@@ -18,7 +18,5 @@ USER runnerboy
 ARG GITHUB_REPO_URL
 # getting repo token from here: https://github.com/<your_repo>/settings/actions/runners/new?arch=x64&os=linux #every token is just 1 time valid...
 ARG GITHUB_REPO_TOKEN 
-RUN if [[ -z "$GITHUB_REPO_URL" ]] ; then echo Argument not provided, build fail ; else echo Argument exists ; fi
-RUN if [[ -z "$GITHUB_REPO_TOKEN" ]] ; then echo Argument not provided, build fail ; else echo Argument exists ; fi
-RUN ./config.sh --url https://github.com/$GITHUB_REPO_URL --token $GITHUB_REPO_TOKEN
+RUN ./config.sh --url https://github.com/$GITHUB_REPO_URL --token $GITHUB_REPO_TOKEN || true;
 ENTRYPOINT [ "./run.sh" ]
